@@ -30,21 +30,13 @@ function App() {
       return;
     }
 
-    fetch(`https://api.spotify.com/v1/search?q=${query}&type=${type}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+    fetch(`http://api.mediastack.com/v1/news?access_key=${USER_ID}&countries=mx&language=es&keywords=${query}`, {
+
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.tracks) {
-          setResults(data.tracks.items);
-        } else if (data.artists) {
-          setResults(data.artists.items);
-        } else {
-          setResults(data.albums.items);
-        }
+          setResults(data);
+
       });
   }
 
